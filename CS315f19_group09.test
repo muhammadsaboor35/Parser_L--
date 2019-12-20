@@ -1,0 +1,161 @@
+#comment
+
+void main() {
+	# comment
+
+	#Primitive Datatypes
+	#1. int
+	#2. bool
+	#3. string
+	#4. conn
+	#5. void
+
+	#defining variables
+	int my_int = 41;
+	bool my_bool = false;
+	string my_string = "beat ty talaal";
+	string server1 = "127.0.0.1";
+	string server2 = "fe80::bbaf:6088:1720:ed68";
+
+
+	#defining constants
+	final int Temperature_PIN = 1;
+	final int Humidity_PIN = 2;
+	final int AirPressure_PIN = 3;
+	final int AirQuality_PIN = 4;
+	final int Light_PIN = 5;
+	final int SoundLevel_PIN = 6;
+	final int Ultrasonic_PIN = 7;
+	final int Infrared_PIN = 8;
+	final int Gyro_PIN = 9;
+	final int Smoke_PIN = 10;
+	final int GPS_PIN = 11;
+	final int BUTTON = 0;
+
+
+	#assignment operator
+	my_bool = true;
+	x = -5;
+	x = +5;
+
+	#operators
+	my_int = my_int + 3;
+	my_int = 2 * 4;
+	my_int = 4 / 15;
+	my_int = my_int ** 3;
+	my_int = 4 - 15;
+	my_bool = false & my_bool;
+	my_bool = true | my_bool;
+	my_bool = true ^ my_bool;
+	my_bool = !my_bool;
+	my_int++;
+	my_int--;
+
+	#If Statement with else
+	if(3>4)
+		puts( "3 is greater than 4");
+	else if(3==4) {
+		puts( "3 is equal to 4");
+		my_int = my_int + 34;
+	}
+	else {
+		puts( "Obviously, 4 is greater than 3");
+	}
+		
+	#For loop statement
+	for( int i = 0; i < 10; i++ ) {
+		if(i * 2 == 0) {
+			puts( i );
+		}
+		i = i+1;
+	}
+
+	#If statement without else
+	if(3 >= 4) {
+		puts( "3 is greater than or equal to 4");
+	}
+	if(3 <= 4) {
+		puts( "3 is less than or equal to 4");
+	}
+	if(3 != 4) {
+		puts( "3 is not equal to 4");
+	}
+
+	#value assignment to a variable
+	my_int = 0;
+
+	#While loop
+	while(my_int < 10000) {
+		puts( my_int );
+		if(my_int > 30) {
+			my_int++;
+		}
+		my_int--;
+	}
+
+	#defining a method
+	int methodName(int int_param1, string string_param1) {
+		puts("methodName is called");
+		return int_param1;
+	}
+
+	#defining a method with no return
+	void doNothing() {
+	}
+
+	#calling a method
+	my_int = methodName(4, "c");
+
+	int freq = 440;
+
+	#Using primitive functions to read date from sensors
+	my_int = readTemperature(Temperature_PIN);
+	my_int = readHumidity(Humidity_PIN);
+	my_int = readAirPressure(AirPressure_PIN);
+	my_int = readAirQuality(AirQuality_PIN);
+	my_int = readLight(Light_PIN);
+	my_int = readSoundLevel(SoundLevel_PIN, freq);
+	my_int = readUltrasonic(Ultrasonic_PIN);
+	my_int = readInfrared(Infrared_PIN);
+	my_int = readGyroX(Gyro_PIN);
+	my_int = readGyroY(Gyro_PIN);
+	my_int = readGyroZ(Gyro_PIN);
+	my_int = readSmoke(Smoke_PIN);
+	my_int = readGPSLang(GPS_PIN);
+	my_int = readGPSLat(GPS_PIN);
+
+	#Using primitive method to convert the format from int to string which is suitable for eg int to degrees in GPSLat
+	my_string = formatGPSLat(my_int); #similarly other format methods can be used 
+	my_int = readTime();
+	my_string = formatTime(my_int);
+
+	int internal_temperature = readTemperature(Temperature_PIN);
+
+	#declaring an object in the primitive data type for conn
+	conn a = build_conn("127.0.0.1", 65535);
+	conn b = build_conn(a); #copying connection
+
+	#using the internal methods of the conn data type
+	a.sendData(internal_temperature);
+	int external_temperature = a.receiveData();
+
+	a.close_conn();
+
+
+	if(internal_temperature > external_temperature) {
+		if(getState(BUTTON)) {
+			switchOff(BUTTON); #switch off if the button is on
+		}
+		else {
+			switchOn(BUTTON); #switch on if the button is off
+		}
+		puts("temperature inside home is greater than temperature outside home: " + str(31));
+	}
+
+	#printing the length of the string
+	puts(length(my_string));
+	string input = "";
+	gets(input);
+}
+
+#comment
